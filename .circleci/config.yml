@@ -1,0 +1,19 @@
+version: 2.1
+
+orbs:
+  do-exclusively: miyajan/do-exclusively@dev:first
+
+jobs:
+  test-do-exclusively:
+    docker:
+      - image: circleci/buildpack-deps:16.04
+    steps:
+      - checkout
+      - do-exclusively/do-exclusively:
+          command: sleep 1m
+          token: $CIRCLE_TOKEN
+
+workflows:
+  test-do-exclusively:
+    jobs:
+      - test-do-exclusively
